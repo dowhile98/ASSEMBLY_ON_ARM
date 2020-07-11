@@ -1,3 +1,4 @@
+;este programa almacena un valor hexadecimal en una direccion de memoria y luego copia los valores en otra
 ;DEFINICION DE CONSTANTES SIMBOLICAS
 
 RAM1_ADDR	EQU		0x20000000		;direccion de memoria de la sramm
