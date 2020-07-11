@@ -1,0 +1,189 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;DEFINICION DE CONSTANTES SIMBOLICAS
+    2 00000000         
+    3 00000000 20000000 
+                       RAM1_ADDR
+                               EQU              0x20000000  ;direccion de memor
+                                                            ia de la sramm
+    4 00000000 20000100 
+                       RAM2_ADDR
+                               EQU              0x20000100  ;otra direccion de 
+                                                            memoria de la sram
+    5 00000000         
+    6 00000000         ;AREA DE CODIGO
+    7 00000000                 AREA             myCODE, CODE,READONLY
+    8 00000000                 ENTRY
+    9 00000000                 EXPORT           __main
+   10 00000000         
+   11 00000000         __main
+   12 00000000 F000 F803       BL               FILL        ;Subrutina que el a
+                                                            lmacena el valor he
+                                                            xadecimal en RAM1_A
+                                                            DDR
+   13 00000004 F000 F80C       BL               COPY        ;subrutina que copi
+                                                            a los datos de RAM1
+                                                            _ADRR a RAM2_ADR
+   14 00000008         
+   15 00000008 E7FE    Stop    B                Stop        ;bucle infinito
+   16 0000000A         
+   17 0000000A F04F 5100 
+                       FILL    LDR              R1,= RAM1_ADDR ;carga la direcc
+                                                            ion el valor a RAM1
+                                                            _ADDR a R1
+   18 0000000E F04F 000A       MOV              R0,#10      ;carga el valor del
+                                                             literal a R0
+   19 00000012 4A0A            LDR              R2,=0xAAAABBBB ;carga el valor 
+                                                            del hexadecinal a R
+                                                            2
+   20 00000014         
+   21 00000014 F841 2B04 
+                       L1      STR              R2,[R1],#4  ;almacena el conten
+                                                            ido de R2 a la dire
+                                                            ccion contenida por
+                                                             R1
+   22 00000018         ;R1 = R1 + 4
+   23 00000018 1E40            SUBS             R0,R0,#1    ;R0 = R0 - 1
+   24 0000001A 2800            CMP              R0,#0       ;Instruccion de com
+                                                            paracion(R0-0)
+   25 0000001C D1FA            BNE              L1          ;si no son iguales
+   26 0000001E 4770            BX               LR          ;finaliza la subrut
+                                                            ina y regresa a __m
+                                                            ain
+   27 00000020         
+   28 00000020 F04F 5100 
+                       COPY    LDR              R1,=RAM1_ADDR ;carga la direcci
+                                                            on el valor a RAM1_
+                                                            ADDR a R1
+   29 00000024 4A06            LDR              R2,=RAM2_ADDR ;carga la direcci
+                                                            on el valor a RAM1_
+                                                            ADDR a R1
+   30 00000026 F04F 000A       MOV              R0,#10      ;carga el valor del
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+                                                             literal a R0
+   31 0000002A         
+   32 0000002A F851 3B04 
+                       L2      LDR              R3,[R1],#4  ;carga el contenido
+                                                             de la direccion ap
+                                                            untada por r1
+   33 0000002E         ;R1 = R1 + 4 luego de ejecutarse la instruccion
+   34 0000002E F842 3B04       STR              R3,[R2],#4  ;almacena el conten
+                                                            ido de R3 a la dire
+                                                            ccio apuntada por R
+                                                            2
+   35 00000032         ;R2 = R2 + 4 luego de ejecutar la instruccion
+   36 00000032 1E40            SUBS             R0,R0,#1    ;R0 = R0-1
+   37 00000034 2800            CMP              R0,#0       ;RO - 0
+   38 00000036 D1F8            BNE              L2          ;SI NO SON IGUALES
+   39 00000038 4770            BX               LR          ;finaliza la subrut
+                                                            ina y retorna a __m
+                                                            ain
+   40 0000003A         
+   41 0000003A                 END
+              00 00 AAAABBBB 
+              20000100 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\Device\STM32F103C8 -I.
+\RTE\_Target_1 -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Packs\ARM\CMSIS
+\5.7.0\CMSIS\Core\Include" -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Pac
+ks\Keil\STM32F1xx_DFP\2.3.0\Device\Include" --predefine="__EVAL SETA 1" --prede
+fine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 529" --predefine="
+_RTE_ SETA 1" --predefine="STM32F10X_MD SETA 1" --list=.\listings\main.lst main
+.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+COPY 00000020
+
+Symbol: COPY
+   Definitions
+      At line 28 in file main.s
+   Uses
+      At line 13 in file main.s
+Comment: COPY used once
+FILL 0000000A
+
+Symbol: FILL
+   Definitions
+      At line 17 in file main.s
+   Uses
+      At line 12 in file main.s
+Comment: FILL used once
+L1 00000014
+
+Symbol: L1
+   Definitions
+      At line 21 in file main.s
+   Uses
+      At line 25 in file main.s
+Comment: L1 used once
+L2 0000002A
+
+Symbol: L2
+   Definitions
+      At line 32 in file main.s
+   Uses
+      At line 38 in file main.s
+Comment: L2 used once
+Stop 00000008
+
+Symbol: Stop
+   Definitions
+      At line 15 in file main.s
+   Uses
+      At line 15 in file main.s
+Comment: Stop used once
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 11 in file main.s
+   Uses
+      At line 9 in file main.s
+Comment: __main used once
+myCODE 00000000
+
+Symbol: myCODE
+   Definitions
+      At line 7 in file main.s
+   Uses
+      None
+Comment: myCODE unused
+7 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+RAM1_ADDR 20000000
+
+Symbol: RAM1_ADDR
+   Definitions
+      At line 3 in file main.s
+   Uses
+      At line 17 in file main.s
+      At line 28 in file main.s
+
+RAM2_ADDR 20000100
+
+Symbol: RAM2_ADDR
+   Definitions
+      At line 4 in file main.s
+   Uses
+      At line 29 in file main.s
+Comment: RAM2_ADDR used once
+2 symbols
+346 symbols in table

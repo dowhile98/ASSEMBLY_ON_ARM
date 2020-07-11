@@ -1,0 +1,67 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;ESTRUCTURA BASICA DE PROGRAMA DE ASEMBLER
+    2 00000000         
+    3 00000000                 AREA             myFirstProgram, CODE, READONLY
+    4 00000000                 ENTRY                        ;indica la entrada 
+                                                            del programa
+    5 00000000                 EXPORT           __main      ;accesible desde ot
+                                                            ro archivo diferent
+                                                            e
+    6 00000000         
+    7 00000000         __main
+    8 00000000 F240 1023       MOV              R0,#0x123   ;carga el valor del
+                                                             numero al registro
+                                                             R0
+    9 00000004 F44F 7180       MOV              R1,#0x100   ;carga el valor del
+                                                             numero al registro
+                                                             R1
+   10 00000008 EB00 0201       ADD              R2,R0,R1    ;R2 = R0 + R0
+   11 0000000C         
+   12 0000000C E7FE    stop    B                stop        ;ciclo infinito o f
+                                                            in 
+   13 0000000E                 END                          ;indica el fin del 
+                                                            programa
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\Device\STM32F103C8 -I.
+\RTE\_Target_1 -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Packs\ARM\CMSIS
+\5.7.0\CMSIS\Core\Include" -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Pac
+ks\Keil\STM32F1xx_DFP\2.3.0\Device\Include" --predefine="__EVAL SETA 1" --prede
+fine="__UVISION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine="STM32
+F10X_MD SETA 1" --list=.\listings\main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 7 in file main.s
+   Uses
+      At line 5 in file main.s
+Comment: __main used once
+myFirstProgram 00000000
+
+Symbol: myFirstProgram
+   Definitions
+      At line 3 in file main.s
+   Uses
+      None
+Comment: myFirstProgram unused
+stop 0000000C
+
+Symbol: stop
+   Definitions
+      At line 12 in file main.s
+   Uses
+      At line 12 in file main.s
+Comment: stop used once
+3 symbols
+337 symbols in table
