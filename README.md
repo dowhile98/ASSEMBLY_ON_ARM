@@ -4,4 +4,4 @@
 
 <h3> CREAR UN NUEVO PROYECTO EN MDK-Keil</h3>
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+[![IMAGE ALT TEXT HERE](https://lh3.googleusercontent.com/proxy/aZ7Ee1BJr5s5hnl54EM9VOXdeJz8LhZVahs2iAk2fdQMmsQvEOK92qZZbhK7KYRNFvdrLpHVURC-fZULhF7-LyjFw0uulA)](https://youtu.be/0t_Myn4UYUw)
