@@ -4,5 +4,5 @@
 
 <h3> CREAR UN NUEVO PROYECTO EN MDK-Keil</h3>
 <video src="https://youtu.be/0t_Myn4UYUw" controls>
-  <p>Your browser doesn't support HTML5 video. Here is a <a href="http://web.eece.maine.edu/~zhu/book/tutorials.php">link to the video</a> instead.</p> 
+  <p>Your browser doesn't support HTML5 video. Here is a <a href="https://youtu.be/0t_Myn4UYUw">link to the video</a> instead.</p> 
 </video>
