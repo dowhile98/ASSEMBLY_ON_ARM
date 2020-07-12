@@ -4,4 +4,4 @@
 
 <h3> CREAR UN NUEVO PROYECTO EN MDK-Keil</h3>
 
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/0t_Myn4UYUw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
