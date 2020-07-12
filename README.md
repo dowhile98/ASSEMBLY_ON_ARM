@@ -11,6 +11,7 @@
 
 <h3> INSTRUCCIONES ARM CORTEX-M</h3>
 
-<object  data="https://bohobiom.com/archive/ARMThumbCheatSheet.pdf"></object>
-
-<iframe  src="https://bohobiom.com/archive/ARMThumbCheatSheet.pdf"></iframe>
+<h4>click en la imagen para ver el archivo</h4>
+<div align="center">
+  <a href="https://bohobiom.com/archive/ARMThumbCheatSheet.pdf"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcROaxr72DxRvhkWtVzuygrFsPCVyxu8h3pY7g&usqp=CAU"></a>
+</div>
