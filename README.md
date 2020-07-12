@@ -10,4 +10,7 @@
 </div>
 
 <h3> INSTRUCCIONES ARM CORTEX-M</h3>
-<embed src="https://bohobiom.com/archive/ARMThumbCheatSheet.pdf" width="100%" height="600px" />
+
+<object  data="https://bohobiom.com/archive/ARMThumbCheatSheet.pdf"></object>
+
+<iframe  src="https://bohobiom.com/archive/ARMThumbCheatSheet.pdf"></iframe>
