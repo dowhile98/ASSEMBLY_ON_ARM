@@ -1,0 +1,108 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; P = Q + R + S
+    2 00000000         ; Q = 3, R=2, S = 4
+    3 00000000         
+    4 00000000         ;DEFINICION DE CONSTANTES
+    5 00000000 00000003 
+                       Q       EQU              3
+    6 00000000 00000002 
+                       R       EQU              2
+    7 00000000 00000004 
+                       S       EQU              4
+    8 00000000         
+    9 00000000         ;ZONA DE CODIGO
+   10 00000000                 AREA             myCODE, CODE, READONLY
+   11 00000000                 ENTRY
+   12 00000000                 EXPORT           __main
+   13 00000000         
+   14 00000000         __main  PROC                         ;subrutina principa
+                                                            l
+   15 00000000 F04F 0103       MOV              R1,#Q       ;carga el valor de 
+                                                            Q al registro R1
+   16 00000004 F04F 0202       MOV              R2,#R       ;Carga el valor de 
+                                                            R al registro R2
+   17 00000008 F04F 0304       MOV              R3,#S       ;carga el valor de 
+                                                            S al registro R3
+   18 0000000C EB01 0002       ADD              R0,R1,R2    ;R0 = R1 + R2
+   19 00000010 4418            ADD              R0,R0,R3    ;R0 = R0 + R3
+   20 00000012         
+   21 00000012 E7FE    Loop    B                Loop        ;bucle infinito
+   22 00000014         
+   23 00000014                 ENDP                         ;fin de la subrutin
+                                                            a
+   24 00000014                 END                          ;fin del programa
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\Device\STM32F103C8 -I.
+\RTE\_Target_1 -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Packs\ARM\CMSIS
+\5.7.0\CMSIS\Core\Include" -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Pac
+ks\Keil\STM32F1xx_DFP\2.3.0\Device\Include" --predefine="__EVAL SETA 1" --prede
+fine="__UVISION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine="STM32
+F10X_MD SETA 1" --list=.\listings\main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Loop 00000012
+
+Symbol: Loop
+   Definitions
+      At line 21 in file main.s
+   Uses
+      At line 21 in file main.s
+Comment: Loop used once
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 14 in file main.s
+   Uses
+      At line 12 in file main.s
+Comment: __main used once
+myCODE 00000000
+
+Symbol: myCODE
+   Definitions
+      At line 10 in file main.s
+   Uses
+      None
+Comment: myCODE unused
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+Q 00000003
+
+Symbol: Q
+   Definitions
+      At line 5 in file main.s
+   Uses
+      At line 15 in file main.s
+Comment: Q used once
+R 00000002
+
+Symbol: R
+   Definitions
+      At line 6 in file main.s
+   Uses
+      At line 16 in file main.s
+Comment: R used once
+S 00000004
+
+Symbol: S
+   Definitions
+      At line 7 in file main.s
+   Uses
+      At line 17 in file main.s
+Comment: S used once
+3 symbols
+340 symbols in table

@@ -1,0 +1,129 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; P = Q + R + S
+    2 00000000         ;let Q=2, R=4,S=5
+    3 00000000         
+    4 00000000         
+    5 00000000                 AREA             myDATA, DATA, READONLY
+    6 00000000         
+    7 00000000 00 00 00 
+              00       P       SPACE            4           ; RESERVA 4 BYTES E
+                                                            N LA MEMORIA
+    8 00000004 00000002 
+                       Q       DCD              2           ; CREA UNA VARIABLE
+                                                             Q = 2
+    9 00000008 00000004 
+                       R       DCD              4           ; CREA UNA VARIABLE
+                                                             R = 4
+   10 0000000C 00000005 
+                       S       DCD              5           ; CREA UNA VARIABLE
+                                                             S = 5
+   11 00000010         
+   12 00000010                 AREA             myCODE,CODE, READONLY
+   13 00000000                 ENTRY
+   14 00000000                 EXPORT           __main
+   15 00000000         
+   16 00000000         __main  PROC                         ;SUBRUTINA PRINCIPA
+                                                            L
+   17 00000000 F85F 1004       LDR              R1,Q        ;CARGA EL VALOR DE 
+                                                            Q A R1
+   18 00000004 F85F 2004       LDR              R2,R        ;CARGA EL VALOR DE 
+                                                            R A R2
+   19 00000008 F85F 3004       LDR              R3,S        ;CARGA EL VALOR DE 
+                                                            S A R3 
+   20 0000000C EB01 0002       ADD              R0,R1,R2    ;R0 = R1 + R2
+   21 00000010 4418            ADD              R0,R0,R3    ;R0 = R0 + R3
+   22 00000012 E7FE    Stop    B                Stop        ;BUCLE INFINITO
+   23 00000014                 ENDP                         ;FIN DE LA SUBRUTIN
+                                                            A PRINCIPAL
+   24 00000014                 END                          ;FIN DEL PROGRAMA
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\Device\STM32F103C8 -I.
+\RTE\_Target_1 -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Packs\ARM\CMSIS
+\5.7.0\CMSIS\Core\Include" -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Pac
+ks\Keil\STM32F1xx_DFP\2.3.0\Device\Include" --predefine="__EVAL SETA 1" --prede
+fine="__UVISION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine="STM32
+F10X_MD SETA 1" --list=.\listings\main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+P 00000000
+
+Symbol: P
+   Definitions
+      At line 7 in file main.s
+   Uses
+      None
+Comment: P unused
+Q 00000004
+
+Symbol: Q
+   Definitions
+      At line 8 in file main.s
+   Uses
+      At line 17 in file main.s
+Comment: Q used once
+R 00000008
+
+Symbol: R
+   Definitions
+      At line 9 in file main.s
+   Uses
+      At line 18 in file main.s
+Comment: R used once
+S 0000000C
+
+Symbol: S
+   Definitions
+      At line 10 in file main.s
+   Uses
+      At line 19 in file main.s
+Comment: S used once
+myDATA 00000000
+
+Symbol: myDATA
+   Definitions
+      At line 5 in file main.s
+   Uses
+      None
+Comment: myDATA unused
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Stop 00000012
+
+Symbol: Stop
+   Definitions
+      At line 22 in file main.s
+   Uses
+      At line 22 in file main.s
+Comment: Stop used once
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 16 in file main.s
+   Uses
+      At line 14 in file main.s
+Comment: __main used once
+myCODE 00000000
+
+Symbol: myCODE
+   Definitions
+      At line 12 in file main.s
+   Uses
+      None
+Comment: myCODE unused
+3 symbols
+342 symbols in table
