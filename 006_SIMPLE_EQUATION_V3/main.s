@@ -1,6 +1,5 @@
 ;P = Q +S +R
 ;Q=2, R=4, S=5
-
 ;CONSTANTES SIMBOLICAS
 P		EQU		0
 Q		EQU		4
@@ -11,7 +10,6 @@ S		EQU		12
 		AREA	EQ3, CODE, READONLY
 		ENTRY
 		EXPORT	__main
-
 __main	PROC				;SUBRUTINA PRINCIPAL
 		ADRL	R4,Vals 	; R4 points to vals area
 		LDR		R1,[R4,#Q]  ; load Q=2 into R1
@@ -25,7 +23,6 @@ __main	PROC				;SUBRUTINA PRINCIPAL
 		
 Stop
 		B		Stop
-		
 		ENDP				;FIN DEL SUBRUTINA
 
 ;AREA DE DATOS

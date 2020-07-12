@@ -6,72 +6,69 @@ ARM Macro Assembler    Page 1
 
     1 00000000         ;P = Q +S +R
     2 00000000         ;Q=2, R=4, S=5
-    3 00000000         
-    4 00000000         ;CONSTANTES SIMBOLICAS
-    5 00000000 00000000 
+    3 00000000         ;CONSTANTES SIMBOLICAS
+    4 00000000 00000000 
                        P       EQU              0
-    6 00000000 00000004 
+    5 00000000 00000004 
                        Q       EQU              4
-    7 00000000 00000008 
+    6 00000000 00000008 
                        R       EQU              8
-    8 00000000 0000000C 
+    7 00000000 0000000C 
                        S       EQU              12
-    9 00000000         
-   10 00000000         ;AREA DE CODIGO
-   11 00000000                 AREA             EQ3, CODE, READONLY
-   12 00000000                 ENTRY
-   13 00000000                 EXPORT           __main
-   14 00000000         
-   15 00000000         __main  PROC                         ;SUBRUTINA PRINCIPA
+    8 00000000         
+    9 00000000         ;AREA DE CODIGO
+   10 00000000                 AREA             EQ3, CODE, READONLY
+   11 00000000                 ENTRY
+   12 00000000                 EXPORT           __main
+   13 00000000         __main  PROC                         ;SUBRUTINA PRINCIPA
                                                             L
-   16 00000000 F20F 0414 
+   14 00000000 F20F 0414 
               F104 0400        ADRL             R4,Vals     ; R4 points to vals
                                                              area
-   17 00000008 6861            LDR              R1,[R4,#Q]  ; load Q=2 into R1
-   18 0000000A 68A2            LDR              R2,[R4,#R]  ; load R=4 into R2
-   19 0000000C 68E3            LDR              R3,[R4,#S]  ; load  S=5  inot R
+   15 00000008 6861            LDR              R1,[R4,#Q]  ; load Q=2 into R1
+   16 0000000A 68A2            LDR              R2,[R4,#R]  ; load R=4 into R2
+   17 0000000C 68E3            LDR              R3,[R4,#S]  ; load  S=5  inot R
                                                             3
-   20 0000000E         
-   21 0000000E EB01 0002       ADD              R0,R1,R2    ;R0 = R1 + R2
-   22 00000012 4418            ADD              R0,R0,R3    ;R0 = R0 + R3
-   23 00000014         
-   24 00000014 6020            STR              R0,[R4,#P]  ;ALMACENA EL RESULT
+   18 0000000E         
+   19 0000000E EB01 0002       ADD              R0,R1,R2    ;R0 = R1 + R2
+   20 00000012 4418            ADD              R0,R0,R3    ;R0 = R0 + R3
+   21 00000014         
+   22 00000014 6020            STR              R0,[R4,#P]  ;ALMACENA EL RESULT
                                                             ADO
-   25 00000016         
-   26 00000016         Stop
-   27 00000016 E7FE            B                Stop
-   28 00000018         
-   29 00000018                 ENDP                         ;FIN DEL SUBRUTINA
-   30 00000018         
-   31 00000018         ;AREA DE DATOS
-   32 00000018                 AREA             EQ3, DATA, READONLY 
+   23 00000016         
+   24 00000016         Stop
+   25 00000016 E7FE            B                Stop
+   26 00000018                 ENDP                         ;FIN DEL SUBRUTINA
+   27 00000018         
+   28 00000018         ;AREA DE DATOS
+   29 00000018                 AREA             EQ3, DATA, READONLY 
                                                             ;SOLO LECTURA
-   33 00000018         
-   34 00000018 00 00 00 
+   30 00000018         
+   31 00000018 00 00 00 
               00       Vals    SPACE            4           ;RESERVA 4 BYTES EN
                                                              LA MEMORIA
-   35 0000001C 00000002        DCD              2           ;VARIABLE  CON VALO
+   32 0000001C 00000002        DCD              2           ;VARIABLE  CON VALO
                                                             R INICIAL 2
-   36 00000020 00000004        DCD              4           ;VARIABLE CON VALOR
+   33 00000020 00000004        DCD              4           ;VARIABLE CON VALOR
                                                              INICIAL 4
-   37 00000024 00000005        DCD              5           ;VARIABLE CON VALOR
+   34 00000024 00000005        DCD              5           ;VARIABLE CON VALOR
                                                              INICIAL 5
-   38 00000028                 ALIGN                        ;ALINIACION DE DATO
+   35 00000028                 ALIGN                        ;ALINIACION DE DATO
                                                             S EN BYTES
-   39 00000028         
-   40 00000028                 END                          ;FIN DEL PROGRAMA
+   36 00000028         
+   37 00000028                 END                          ;FIN DEL PROGRAMA
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\Device\STM32F103C8 -I.
 \RTE\_Target_1 -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Packs\ARM\CMSIS
+\5.7.0\CMSIS\Core\Include" -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Pac
+ks\Keil\STM32F1xx_DFP\2.3.0\Device\Include" --predefine="__EVAL SETA 1" --prede
+fine="__UVISION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine="STM32
 
 
 
 ARM Macro Assembler    Page 2 
 
 
-\5.7.0\CMSIS\Core\Include" -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Pac
-ks\Keil\STM32F1xx_DFP\2.3.0\Device\Include" --predefine="__EVAL SETA 1" --prede
-fine="__UVISION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine="STM32
 F10X_MD SETA 1" --list=.\listings\main.lst main.s
 
 
@@ -83,7 +80,7 @@ EQ3 00000000
 
 Symbol: EQ3
    Definitions
-      At line 11 in file main.s
+      At line 10 in file main.s
    Uses
       None
 Comment: EQ3 unused
@@ -91,25 +88,25 @@ Stop 00000016
 
 Symbol: Stop
    Definitions
-      At line 26 in file main.s
+      At line 24 in file main.s
    Uses
-      At line 27 in file main.s
+      At line 25 in file main.s
 Comment: Stop used once
 Vals 00000018
 
 Symbol: Vals
    Definitions
-      At line 34 in file main.s
+      At line 31 in file main.s
    Uses
-      At line 16 in file main.s
+      At line 14 in file main.s
 Comment: Vals used once
 __main 00000000
 
 Symbol: __main
    Definitions
-      At line 15 in file main.s
-   Uses
       At line 13 in file main.s
+   Uses
+      At line 12 in file main.s
 Comment: __main used once
 4 symbols
 
@@ -122,33 +119,33 @@ P 00000000
 
 Symbol: P
    Definitions
-      At line 5 in file main.s
+      At line 4 in file main.s
    Uses
-      At line 24 in file main.s
+      At line 22 in file main.s
 Comment: P used once
 Q 00000004
 
 Symbol: Q
    Definitions
-      At line 6 in file main.s
+      At line 5 in file main.s
    Uses
-      At line 17 in file main.s
+      At line 15 in file main.s
 Comment: Q used once
 R 00000008
 
 Symbol: R
    Definitions
-      At line 7 in file main.s
+      At line 6 in file main.s
    Uses
-      At line 18 in file main.s
+      At line 16 in file main.s
 Comment: R used once
 S 0000000C
 
 Symbol: S
    Definitions
-      At line 8 in file main.s
+      At line 7 in file main.s
    Uses
-      At line 19 in file main.s
+      At line 17 in file main.s
 Comment: S used once
 4 symbols
 342 symbols in table
