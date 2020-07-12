@@ -8,3 +8,6 @@
 <div align="center">
   <a href="https://youtu.be/0t_Myn4UYUw"><img src="https://lh3.googleusercontent.com/proxy/aZ7Ee1BJr5s5hnl54EM9VOXdeJz8LhZVahs2iAk2fdQMmsQvEOK92qZZbhK7KYRNFvdrLpHVURC-fZULhF7-LyjFw0uulA"></a>
 </div>
+
+<h3> INSTRUCCIONES ARM CORTEX-M</h3>
+<iframe src="https://docs.google.com/viewer?url=https://bohobiom.com/archive/ARMThumbCheatSheet.pdf&embedded=true" width="600" height="780" style="border: none;"></iframe>
