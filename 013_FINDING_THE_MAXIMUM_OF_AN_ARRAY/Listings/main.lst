@@ -1,0 +1,181 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;ESTE PROGRAMA HALLA EL ELEMENTO MAYOR DE UN ARRAY
+    2 00000000         ;AREA DE DATOS
+    3 00000000 20000000 
+                       max     EQU              0x20000000  ;PARA ALMACENAR EL 
+                                                            VALOR MAXIMO ALLADO
+                                                             EN LA SRAM
+    4 00000000         
+    5 00000000                 AREA             myDATA, DATA,READONLY,ALIGN=2
+    6 00000000                 ALIGN
+    7 00000000 FFFFFFFF 
+              00000005 
+              00000003 
+              00000008 
+              0000000A 
+              00000017 
+              00000006 
+              00000005 
+              00000002 
+              FFFFFFF6 array   DCD              -1,5,3,8,10,23,6,5,2,-10
+    8 00000028 0000000A 
+                       size    DCD              10
+    9 0000002C         
+   10 0000002C         ;AREA DE CODIGO
+   11 0000002C                 AREA             myCODE, CODE,READONLY,ALIGN=2
+   12 00000000                 EXPORT           __main
+   13 00000000         
+   14 00000000                 ENTRY
+   15 00000000         
+   16 00000000         __main  PROC
+   17 00000000         ;IDENTIFICAMOS EL TAMAÑO DEL ARREGLO
+   18 00000000 4B0C            LDR              R3,=size
+   19 00000002 681B            LDR              R3,[R3]     ;TAMAÑO DEL ARRAY
+   20 00000004 F1A3 0301       SUB              R3,R3,#1
+   21 00000008         ;SE INICIALIZA EL VALOR MAXIMO
+   22 00000008 4C0B            LDR              R4,=array
+   23 0000000A 6820            LDR              R0,[R4]     ;se asigna el prime
+                                                            r elemeto del array
+                                                             al valor maximo
+   24 0000000C F04F 0100       MOV              R1,#0       ;INDICE DEL VALOR M
+                                                            AXIMO
+   25 00000010         
+   26 00000010         
+   27 00000010         ;iterador para el for
+   28 00000010 F04F 0200       MOV              R2,#0
+   29 00000014 429A    loop    CMP              R2,R3
+   30 00000016 DA08            BGE              maxSave
+   31 00000018 F854 5022       LDR              R5,[R4,R2,LSL #2] ;ARRAY[I]
+   32 0000001C 4285            CMP              R5,R0       ;SE COMPARA CON  EL
+                                                             VALOR MAXIMO
+   33 0000001E BFC4 4628       MOVGT            R0,R5       ;si es mayor se act
+                                                            ualiza el valor max
+                                                            imo
+   34 00000022 4611            MOVGT            R1,R2       ;se actualiza el in
+                                                            dice del array
+   35 00000024 F102 0201       ADD              R2,R2,#1    ;se actualiza el i,
+                                                             del for
+   36 00000028 E7F4            B                loop
+   37 0000002A F04F 5300 
+                       maxSave LDR              R3,=max
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   38 0000002E 00 00           ALIGN                        ;PARA ALINEAR EL DA
+                                                            TO LEIDO
+   39 00000030 6018            STR              R0,[R3]
+   40 00000032         
+   41 00000032 E7FE    stop    B                stop
+   42 00000034                 ENDP
+   43 00000034                 END
+              00000000 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\Device\STM32F103C8 -I.
+\RTE\_Target_1 -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Packs\ARM\CMSIS
+\5.7.0\CMSIS\Core\Include" -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Pac
+ks\Keil\STM32F1xx_DFP\2.3.0\Device\Include" --predefine="__EVAL SETA 1" --prede
+fine="__UVISION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine="STM32
+F10X_MD SETA 1" --list=.\listings\main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+array 00000000
+
+Symbol: array
+   Definitions
+      At line 7 in file main.s
+   Uses
+      At line 22 in file main.s
+Comment: array used once
+myDATA 00000000
+
+Symbol: myDATA
+   Definitions
+      At line 5 in file main.s
+   Uses
+      None
+Comment: myDATA unused
+size 00000028
+
+Symbol: size
+   Definitions
+      At line 8 in file main.s
+   Uses
+      At line 18 in file main.s
+Comment: size used once
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 16 in file main.s
+   Uses
+      At line 12 in file main.s
+Comment: __main used once
+loop 00000014
+
+Symbol: loop
+   Definitions
+      At line 29 in file main.s
+   Uses
+      At line 36 in file main.s
+Comment: loop used once
+maxSave 0000002A
+
+Symbol: maxSave
+   Definitions
+      At line 37 in file main.s
+   Uses
+      At line 30 in file main.s
+Comment: maxSave used once
+myCODE 00000000
+
+Symbol: myCODE
+   Definitions
+      At line 11 in file main.s
+   Uses
+      None
+Comment: myCODE unused
+stop 00000032
+
+Symbol: stop
+   Definitions
+      At line 41 in file main.s
+   Uses
+      At line 41 in file main.s
+Comment: stop used once
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+max 20000000
+
+Symbol: max
+   Definitions
+      At line 3 in file main.s
+   Uses
+      At line 37 in file main.s
+Comment: max used once
+1 symbol
+345 symbols in table

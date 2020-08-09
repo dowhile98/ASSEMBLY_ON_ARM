@@ -1,0 +1,125 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;P = Q +S +R
+    2 00000000         ;Q=2, R=4, S=5
+    3 00000000         
+    4 00000000         
+    5 00000000         ;AREA DE CODIGO
+    6 00000000                 AREA             EQ3, CODE, READONLY
+    7 00000000                 ENTRY
+    8 00000000                 EXPORT           __main
+    9 00000000         __main  PROC                         ;SUBRUTINA PRINCIPA
+                                                            L
+   10 00000000 F20F 0014 
+              F100 0000        ADRL             R0,P        ;apunta a la direcc
+                                                            ion de P
+   11 00000008 F850 1F04       LDR              R1,[R0,#4]! ;CARGA EL VALOR DE 
+                                                            Q Y ACTUALIZA R0 = 
+                                                            R0 + 4
+   12 0000000C F850 2F04       LDR              R2,[R0,#4]! ;CARGA EL VALOR DE 
+                                                            R Y ACTUALIZA R0 = 
+                                                            R0 + 4
+   13 00000010 440A            ADD              R2,R2,R1    ;R2 = R2 + R1
+   14 00000012 6841            LDR              R1,[R0,#4]  ;CARGA EL VALOR DE 
+                                                            S
+   15 00000014 440A            ADD              R2,R2,R1    ;R2 = R2 + R1
+   16 00000016         Stop
+   17 00000016 E7FE            B                Stop
+   18 00000018                 ENDP                         ;FIN DE LA SUBRUTIN
+                                                            A
+   19 00000018         
+   20 00000018         ;AREA DE DATOS
+   21 00000018                 AREA             EQ3, DATA, READONLY 
+                                                            ;SOLO LECTURA
+   22 00000018         
+   23 00000018 00 00 00 
+              00       P       SPACE            4           ;RESERVA 4 BYTES EN
+                                                             LA MEMORIA
+   24 0000001C 00000002 
+                       Q       DCD              2           ;VARIABLE  CON VALO
+                                                            R INICIAL 2
+   25 00000020 00000004 
+                       R       DCD              4           ;VARIABLE CON VALOR
+                                                             INICIAL 4
+   26 00000024 00000005 
+                       S       DCD              5           ;VARIABLE CON VALOR
+                                                             INICIAL 5
+   27 00000028                 ALIGN                        ;ALINIACION DE DATO
+                                                            S EN BYTES
+   28 00000028         
+   29 00000028                 END                          ;FIN DEL PROGRAMA
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\Device\STM32F103C8 -I.
+\RTE\_Target_1 -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Packs\ARM\CMSIS
+\5.7.0\CMSIS\Core\Include" -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Pac
+ks\Keil\STM32F1xx_DFP\2.3.0\Device\Include" --predefine="__EVAL SETA 1" --prede
+fine="__UVISION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine="STM32
+F10X_MD SETA 1" --list=.\listings\main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+EQ3 00000000
+
+Symbol: EQ3
+   Definitions
+      At line 6 in file main.s
+   Uses
+      None
+Comment: EQ3 unused
+P 00000018
+
+Symbol: P
+   Definitions
+      At line 23 in file main.s
+   Uses
+      At line 10 in file main.s
+Comment: P used once
+Q 0000001C
+
+Symbol: Q
+   Definitions
+      At line 24 in file main.s
+   Uses
+      None
+Comment: Q unused
+R 00000020
+
+Symbol: R
+   Definitions
+      At line 25 in file main.s
+   Uses
+      None
+Comment: R unused
+S 00000024
+
+Symbol: S
+   Definitions
+      At line 26 in file main.s
+   Uses
+      None
+Comment: S unused
+Stop 00000016
+
+Symbol: Stop
+   Definitions
+      At line 16 in file main.s
+   Uses
+      At line 17 in file main.s
+Comment: Stop used once
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 9 in file main.s
+   Uses
+      At line 8 in file main.s
+Comment: __main used once
+7 symbols
+341 symbols in table
