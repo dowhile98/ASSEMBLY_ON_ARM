@@ -1,0 +1,142 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;este programa usa un variable global de assembler para 
+                       ser modificado con 
+    2 00000000         ;con funciones escritas en c
+    3 00000000                 AREA             main,CODE
+    4 00000000                 EXPORT           __main
+    5 00000000                 IMPORT           getValue [WEAK]
+    6 00000000                 IMPORT           increment [WEAK]
+    7 00000000                 IMPORT           setValue [WEAK]
+    8 00000000                 IMPORT           value       ;ESTO ES UNA VARIAB
+                                                            LE DEFINIDA EN C
+    9 00000000                 ALIGN
+   10 00000000                 ENTRY
+   11 00000000         __main  PROC
+   12 00000000 2200            MOVS             R2,#0
+   13 00000002 2001            MOVS             R0,#1
+   14 00000004 F7FF FFFE       BL               setValue    ;se llama la funcio
+                                                            nes escritas en c
+   15 00000008 F7FF FFFE       BL               increment
+   16 0000000C F7FF FFFE       BL               getValue
+   17 00000010 4602            MOV              R2,R0
+   18 00000012         ;ESTA PARTE DE CODIGO MODIFICA UNA VARIABLE DEFINIDA EN 
+                       C
+   19 00000012 4803            LDR              R0,=value
+   20 00000014 6002            STR              R2,[R0]
+   21 00000016 6801            LDR              R1,[R0]
+   22 00000018 F101 0114       ADD              R1,R1,#20
+   23 0000001C 6001            STR              R1,[R0]
+   24 0000001E E7FE    stop    B                stop
+   25 00000020                 ENDP
+   26 00000020         
+   27 00000020 00000000        AREA             myData,DATA
+   28 00000000                 EXPORT           counter
+   29 00000000 00000000 
+                       counter DCD              0
+   30 00000004                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\Device\STM32F103C8 -I.
+\RTE\_Target_1 -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Packs\ARM\CMSIS
+\5.7.0\CMSIS\Core\Include" -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Pac
+ks\Keil\STM32F1xx_DFP\2.3.0\Device\Include" --predefine="__EVAL SETA 1" --prede
+fine="__UVISION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine="STM32
+F10X_MD SETA 1" --list=.\listings\main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 11 in file main.s
+   Uses
+      At line 4 in file main.s
+Comment: __main used once
+main 00000000
+
+Symbol: main
+   Definitions
+      At line 3 in file main.s
+   Uses
+      None
+Comment: main unused
+stop 0000001E
+
+Symbol: stop
+   Definitions
+      At line 24 in file main.s
+   Uses
+      At line 24 in file main.s
+Comment: stop used once
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+counter 00000000
+
+Symbol: counter
+   Definitions
+      At line 29 in file main.s
+   Uses
+      At line 28 in file main.s
+Comment: counter used once
+myData 00000000
+
+Symbol: myData
+   Definitions
+      At line 27 in file main.s
+   Uses
+      None
+Comment: myData unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+getValue 00000000
+
+Symbol: getValue
+   Definitions
+      At line 5 in file main.s
+   Uses
+      At line 16 in file main.s
+Comment: getValue used once
+increment 00000000
+
+Symbol: increment
+   Definitions
+      At line 6 in file main.s
+   Uses
+      At line 15 in file main.s
+Comment: increment used once
+setValue 00000000
+
+Symbol: setValue
+   Definitions
+      At line 7 in file main.s
+   Uses
+      At line 14 in file main.s
+Comment: setValue used once
+value 00000000
+
+Symbol: value
+   Definitions
+      At line 8 in file main.s
+   Uses
+      At line 19 in file main.s
+Comment: value used once
+4 symbols
+345 symbols in table

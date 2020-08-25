@@ -1,0 +1,138 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;se crea una funcion que calcula el maximo comun divisor
+                        de dos numeros
+    2 00000000         ;METODO DE EUCLIDES
+    3 00000000                 AREA             myRESULT,DATA
+    4 00000000                 ALIGN
+    5 00000000 00000000 
+                       result  DCD              0
+    6 00000004         
+    7 00000004                 AREA             myCODE,CODE
+    8 00000000                 EXPORT           __main
+    9 00000000         
+   10 00000000                 ENTRY
+   11 00000000         
+   12 00000000         __main  PROC
+   13 00000000 F04F 0115       MOV              R1,#21      ;primer argumento
+   14 00000004 F04F 001C       MOV              R0,#28      ;segundo argumento
+   15 00000008 F7FF FFFE       BL               gcd
+   16 0000000C         
+   17 0000000C 4A08            LDR              R2,=result
+   18 0000000E 00 00           ALIGN
+   19 00000010 6010            STR              R0,[R2]
+   20 00000012         
+   21 00000012 E7FE    stop    B                stop
+   22 00000014                 ENDP
+   23 00000014         
+   24 00000014         gcd     PROC
+   25 00000014         ;r0 = a
+   26 00000014         ;r1 = b
+   27 00000014 4288            CMP              R0,R1       ;si a<b
+   28 00000016 BFBE 4602       MOVLT            R2,R0       ;se hace el cambio
+   29 0000001A 4608            MOVLT            R0,R1
+   30 0000001C 4611            MOVLT            R1,R2
+   31 0000001E         
+   32 0000001E B131    loop    CBZ              R1,exit
+   33 00000020 FB90 F3F1       SDIV             R3,R0,R1    ;a/b
+   34 00000024 FB01 0213       MLS              R2,R1,R3,R0 ;R2 = R1-R3*R0
+   35 00000028 4608            MOV              R0,R1       ;A = B
+   36 0000002A 4611            MOV              R1,R2       ;B = AL RESULTADO D
+                                                            E LA DIVISION
+   37 0000002C E7F7            B                loop
+   38 0000002E         
+   39 0000002E 4770    exit    BX               LR
+   40 00000030         
+   41 00000030                 ENDP
+   42 00000030                 END
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
+interwork --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -I"C:\
+Users\Ronald Quino Bueno\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Inc
+lude" -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP
+\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include" --predefine="__EVAL SETA 1" 
+--predefine="__UVISION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine
+="STM32F407xx SETA 1" --list=.\listings\main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+myRESULT 00000000
+
+Symbol: myRESULT
+   Definitions
+      At line 3 in file main.s
+   Uses
+      None
+Comment: myRESULT unused
+result 00000000
+
+Symbol: result
+   Definitions
+      At line 5 in file main.s
+   Uses
+      At line 17 in file main.s
+Comment: result used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 12 in file main.s
+   Uses
+      At line 8 in file main.s
+Comment: __main used once
+exit 0000002E
+
+Symbol: exit
+   Definitions
+      At line 39 in file main.s
+   Uses
+      At line 32 in file main.s
+Comment: exit used once
+gcd 00000014
+
+Symbol: gcd
+   Definitions
+      At line 24 in file main.s
+   Uses
+      At line 15 in file main.s
+Comment: gcd used once
+loop 0000001E
+
+Symbol: loop
+   Definitions
+      At line 32 in file main.s
+   Uses
+      At line 37 in file main.s
+Comment: loop used once
+myCODE 00000000
+
+Symbol: myCODE
+   Definitions
+      At line 7 in file main.s
+   Uses
+      None
+Comment: myCODE unused
+stop 00000012
+
+Symbol: stop
+   Definitions
+      At line 21 in file main.s
+   Uses
+      At line 21 in file main.s
+Comment: stop used once
+6 symbols
+345 symbols in table

@@ -1,0 +1,61 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;este programa concatena dos cadenas de texto
+    2 00000000         ;(NECESITA CORRECCION)
+    3 00000000                 AREA             myDATA,DATA
+    4 00000000 4A 65 66 
+              66 72 79 
+              00       str1    DCB              "Jeffry",0
+    5 00000007 00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00 00 
+              00 00    result  SPACE            20          ;reserva 20bytes pa
+                                                            ra almacenar el res
+                                                            ultado
+    6 0000001B 20 51 75 
+              69 6E 6F 
+              00       str2    DCB              " Quino",0
+    7 00000022         
+    8 00000022         ;AREA DE CODIGO
+    9 00000022                 AREA             my_strcat,CODE
+   10 00000000                 EXPORT           __main
+   11 00000000                 ALIGN
+   12 00000000                 ENTRY
+   13 00000000         __main  PROC
+   14 00000000 4807            LDR              R0,=str1    ;primer argumento
+   15 00000002 4908            LDR              R1,=str2    ;segundo argumento
+   16 00000004 F7FF FFFE       BL               strcat
+   17 00000008 E7FE    stop    B                stop
+   18 0000000A                 ENDP
+   19 0000000A         ;concatenacion de 2 cadenas
+   20 0000000A         strcat  PROC
+   21 0000000A 7802    loop    LDRB             R2,[R0]     ;post index
+   22 0000000C B112            CBZ              R2,copy     ;finaliza si detect
+                                                            a un caracter nulo
+   23 0000000E F100 0001       ADD              R0,R0,#1
+   24 00000012 E7FA            B                loop
+   25 00000014         
+   26 00000014 F811 3B01 
+                       copy    LDRB             R3,[R1],#1  ;post index
+   27 00000018 F800 3B01       STRB             R3,[R0],#1  ;post-index
+   28 0000001C DE00            CBNZ             R3,copy
+   29 0000001E         
+   30 0000001E 4770            BX               LR
+   31 00000020                 ENDP
+   32 00000020                 END
+              00000000 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
+interwork --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -I"C:\
+Users\Ronald Quino Bueno\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Inc
+lude" -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP
+\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include" --predefine="__EVAL SETA 1" 
+--predefine="__UVISION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine
+="STM32F407xx SETA 1" --list=.\listings\main.lst main.s

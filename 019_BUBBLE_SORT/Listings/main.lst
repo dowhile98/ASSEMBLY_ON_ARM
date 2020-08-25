@@ -1,0 +1,167 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;ESTE PROGRAMA ES UN ALGORITMO DE ARDENAMIENTO->METODO D
+                       E LA BURBUJA
+    2 00000000         
+    3 00000000                 AREA             myDATA, DATA
+    4 00000000                 ALIGN
+    5 00000000 0000000C 
+              0000000B 
+              0000000A 
+              00000009 
+              00000008 
+              00000007 
+              00000006 
+              00000005 
+              00000004 
+              00000003 
+              00000002 
+              00000001 array   DCD              12,11,10,9,8,7,6,5,4,3,2,1
+    6 00000030 0000000C 
+                       size    DCD              12
+    7 00000034         
+    8 00000034         ;AREA DE CODIGO
+    9 00000034                 AREA             myCODE,CODE
+   10 00000000                 EXPORT           __main
+   11 00000000                 ALIGN
+   12 00000000                 ENTRY
+   13 00000000         
+   14 00000000         __main  PROC
+   15 00000000         
+   16 00000000 4D0E            LDR              R5,=array   ;SE CARGA EL PUNTER
+                                                            O AL ARRAY
+   17 00000002 4E0F            LDR              R6,=size    ;SE CARGA EL PUNTER
+                                                            O AL TAMAÑO DEL ARR
+                                                            EGLO
+   18 00000004 6836            LDR              R6,[R6]     ;SE CARGA EL TRAMAÑ
+                                                            O DEL ARREGLO
+   19 00000006 F1A6 0101       SUB              R1,R6,#1    ;R1 = R6-1
+   20 0000000A         
+   21 0000000A 2900    loop_i  CMP              R1,#0
+   22 0000000C DD15            BLE              stop        ;SI R0<=0
+   23 0000000E F04F 0001       MOV              R0,#1       ;j = 1
+   24 00000012 4288    loop_j  CMP              R0,R1
+   25 00000014 DC0E            BGT              exit_j      ;SI R0>R1
+   26 00000016 F1A0 0201       SUB              R2,R0,#1    ;R2 = j - 1
+   27 0000001A F855 3022       LDR              R3,[R5,R2,LSL #2] ;array[j-1]
+   28 0000001E F855 4020       LDR              R4,[R5,R0,LSL #2] ;array[j]
+   29 00000022 42A3            CMP              R3,R4
+   30 00000024 BFC4 F845 
+              4022             STRGT            R4,[R5,R2,LSL #2] ;array[j-1]
+   31 0000002A F845 3020       STRGT            R3,[R5,R0,LSL #2] ;array[j]
+   32 0000002E F100 0001       ADD              R0,R0,#1    ;j++
+   33 00000032 E7EE            B                loop_j
+   34 00000034 F1A1 0101 
+                       exit_j  SUB              R1,R1,#1
+   35 00000038 E7E7            B                loop_i
+   36 0000003A E7FE    stop    B                stop
+   37 0000003C                 ENDP
+   38 0000003C                 ALIGN
+   39 0000003C                 END
+              00000000 
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
+interwork --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_cortexM4 -I"C:\
+Users\Ronald Quino Bueno\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Inc
+lude" -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP
+\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include" --predefine="__EVAL SETA 1" 
+--predefine="__UVISION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine
+="STM32F407xx SETA 1" --list=.\listings\main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+array 00000000
+
+Symbol: array
+   Definitions
+      At line 5 in file main.s
+   Uses
+      At line 16 in file main.s
+Comment: array used once
+myDATA 00000000
+
+Symbol: myDATA
+   Definitions
+      At line 3 in file main.s
+   Uses
+      None
+Comment: myDATA unused
+size 00000030
+
+Symbol: size
+   Definitions
+      At line 6 in file main.s
+   Uses
+      At line 17 in file main.s
+Comment: size used once
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 14 in file main.s
+   Uses
+      At line 10 in file main.s
+Comment: __main used once
+exit_j 00000034
+
+Symbol: exit_j
+   Definitions
+      At line 34 in file main.s
+   Uses
+      At line 25 in file main.s
+Comment: exit_j used once
+loop_i 0000000A
+
+Symbol: loop_i
+   Definitions
+      At line 21 in file main.s
+   Uses
+      At line 35 in file main.s
+Comment: loop_i used once
+loop_j 00000012
+
+Symbol: loop_j
+   Definitions
+      At line 24 in file main.s
+   Uses
+      At line 33 in file main.s
+Comment: loop_j used once
+myCODE 00000000
+
+Symbol: myCODE
+   Definitions
+      At line 9 in file main.s
+   Uses
+      None
+Comment: myCODE unused
+stop 0000003A
+
+Symbol: stop
+   Definitions
+      At line 36 in file main.s
+   Uses
+      At line 22 in file main.s
+      At line 36 in file main.s
+
+6 symbols
+346 symbols in table

@@ -1,0 +1,118 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         
+    2 00000000         ;ESTE PROGRMA LLAMA UNA FUNCION ESCRITA EN C
+    3 00000000                 AREA             myCODE,CODE
+    4 00000000                 EXPORT           __main
+    5 00000000                 IMPORT           strLen      ;SI IMPORTA LA FUNC
+                                                            ION ESCRITA EN C
+    6 00000000                 IMPORT           getValue [WEAK] ;no genera erro
+                                                            res si no esta defi
+                                                            nido en otro lugar 
+                                                            
+    7 00000000                 ALIGN
+    8 00000000                 ENTRY
+    9 00000000         
+   10 00000000         __main  PROC
+   11 00000000 4801            LDR              R0,=Str_s
+   12 00000002 F7FF FFFE       BL               strLen      ;se llama al funcio
+                                                            n escrita en c
+   13 00000006 E7FE    stop    B                stop
+   14 00000008                 ENDP
+   15 00000008         
+   16 00000008 00000000        AREA             myData, DATA,READONLY
+   17 00000000                 ALIGN
+   18 00000000 31 32 34 
+              35 36 37 
+              38 00    Str_s   DCB              "1245678",0 ;se define una cade
+                                                            na
+   19 00000008                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\Device\STM32F103C8 -I.
+\RTE\_Target_1 -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Packs\ARM\CMSIS
+\5.7.0\CMSIS\Core\Include" -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Pac
+ks\Keil\STM32F1xx_DFP\2.3.0\Device\Include" --predefine="__EVAL SETA 1" --prede
+fine="__UVISION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine="STM32
+F10X_MD SETA 1" --list=.\listings\main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 10 in file main.s
+   Uses
+      At line 4 in file main.s
+Comment: __main used once
+myCODE 00000000
+
+Symbol: myCODE
+   Definitions
+      At line 3 in file main.s
+   Uses
+      None
+Comment: myCODE unused
+stop 00000006
+
+Symbol: stop
+   Definitions
+      At line 13 in file main.s
+   Uses
+      At line 13 in file main.s
+Comment: stop used once
+3 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Str_s 00000000
+
+Symbol: Str_s
+   Definitions
+      At line 18 in file main.s
+   Uses
+      At line 11 in file main.s
+Comment: Str_s used once
+myData 00000000
+
+Symbol: myData
+   Definitions
+      At line 16 in file main.s
+   Uses
+      None
+Comment: myData unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+getValue 00000000
+
+Symbol: getValue
+   Definitions
+      At line 6 in file main.s
+   Uses
+      None
+Comment: getValue unused
+strLen 00000000
+
+Symbol: strLen
+   Definitions
+      At line 5 in file main.s
+   Uses
+      At line 12 in file main.s
+Comment: strLen used once
+2 symbols
+343 symbols in table

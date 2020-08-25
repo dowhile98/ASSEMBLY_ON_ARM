@@ -1,0 +1,81 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         
+    2 00000000         
+    3 00000000         ;FUNCION QUE ELIMINA UNA CARACTER DE UN STRING
+    4 00000000                 AREA             remove,CODE
+    5 00000000                 EXPORT           removeChar
+    6 00000000                 ALIGN
+    7 00000000         removeChar
+                               PROC
+    8 00000000         ;R0->PUNTERO AL ARREGLO
+    9 00000000         ;R1->CARRACTER A ELIMINAR
+   10 00000000 4602            MOV              R2,R0       ;SE RESPALDA EL PUN
+                                                            TERO DE LA CADENA
+   11 00000002 7803    loop    LDRB             R3,[R0]     ;SE LEE UN CARACTER
+                                                             DE LA CADENA
+   12 00000004 B133            CBZ              R3, exit    ;SI SE LLEGA AL FIN
+                                                            AL DE LA CADENA 
+   13 00000006 428B            CMP              R3,R1       ;SE COMPARA LOS CAR
+                                                            ACTERES
+   14 00000008 BF1C 7013       STRBNE           R3,[R2]     ;SE ALMACENA UNA BY
+                                                            TE 
+   15 0000000C 1C52            ADDNE            R2,R2,#1    ;s++
+   16 0000000E F100 0001       ADD              R0,R0,#1
+   17 00000012 E7F6            B                loop
+   18 00000014 7013    exit    STRB             R3,[R2]
+   19 00000016 4770            BX               LR
+   20 00000018                 ENDP
+   21 00000018                 end
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\removecharacter.d -o.\objects\removecharacter.o -I.\RTE\
+Device\STM32F103C8 -I.\RTE\_Target_1 -I"C:\Users\Ronald Quino Bueno\AppData\Loc
+al\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include" -I"C:\Users\Ronald Quino Bueno
+\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include" --predefine="
+__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 529" --predefine="_RTE_ SETA
+ 1" --predefine="STM32F10X_MD SETA 1" --list=.\listings\removecharacter.lst rem
+oveCharacter.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+exit 00000014
+
+Symbol: exit
+   Definitions
+      At line 18 in file removeCharacter.s
+   Uses
+      At line 12 in file removeCharacter.s
+Comment: exit used once
+loop 00000002
+
+Symbol: loop
+   Definitions
+      At line 11 in file removeCharacter.s
+   Uses
+      At line 17 in file removeCharacter.s
+Comment: loop used once
+remove 00000000
+
+Symbol: remove
+   Definitions
+      At line 4 in file removeCharacter.s
+   Uses
+      None
+Comment: remove unused
+removeChar 00000000
+
+Symbol: removeChar
+   Definitions
+      At line 7 in file removeCharacter.s
+   Uses
+      At line 5 in file removeCharacter.s
+Comment: removeChar used once
+4 symbols
+338 symbols in table

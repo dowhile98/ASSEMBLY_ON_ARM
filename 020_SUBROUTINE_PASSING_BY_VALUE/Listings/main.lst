@@ -1,0 +1,126 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;SUBRUTUNIA QUE SUMA DOS NUMEROS Y DEVUELVE LA SUMA->PAS
+                       O POR VALOR
+    2 00000000         
+    3 00000000                 AREA             myCODE,CODE
+    4 00000000                 EXPORT           __main
+    5 00000000                 IMPORT           product
+    6 00000000                 ALIGN
+    7 00000000                 ENTRY
+    8 00000000         __main  PROC
+    9 00000000 F04F 0001       MOV              R0,#1       ;primer argumento
+   10 00000004 F04F 0102       MOV              R1,#2       ;segundo argumento
+   11 00000008 F7FF FFFE       BL               sum2        ;se llama la subrut
+                                                            ina
+   12 0000000C F7FF FFFE       BL               product     ;esta funcion esta 
+                                                            definida en otro ar
+                                                            chivo .s
+   13 00000010 4902            LDR              R1,=t       ;Direccion de memor
+                                                            ia de t
+   14 00000012 00 00           ALIGN
+   15 00000014 6008            STR              R0,[R1]     ;se almacena la sum
+                                                            a
+   16 00000016         
+   17 00000016 E7FE    stop    B                stop
+   18 00000018                 ENDP
+   19 00000018         
+   20 00000018         sum2    PROC
+   21 00000018 4408            ADD              R0,R0,R1    ;DEVUELVE LA SUMA
+   22 0000001A 4770            BX               LR          ;RETORNA LA FUNCION
+                                                             PRINCIPAL
+   23 0000001C                 ENDP
+   24 0000001C         
+   25 0000001C 00000000        AREA             myDATA,DATA
+   26 00000000 00000000 
+                       t       DCD              0
+   27 00000004                 END                          ;FIN DEL PROGRAMA
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp.sp --apcs=
+interwork --depend=.\objects\main.d -o.\objects\main.o -I.\RTE\_Target_1 -I"C:\
+Users\Ronald Quino Bueno\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Inc
+lude" -I"C:\Users\Ronald Quino Bueno\AppData\Local\Arm\Packs\Keil\STM32F4xx_DFP
+\2.14.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include" --predefine="__EVAL SETA 1" 
+--predefine="__UVISION_VERSION SETA 529" --predefine="_RTE_ SETA 1" --predefine
+="STM32F407xx SETA 1" --list=.\listings\main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 8 in file main.s
+   Uses
+      At line 4 in file main.s
+Comment: __main used once
+myCODE 00000000
+
+Symbol: myCODE
+   Definitions
+      At line 3 in file main.s
+   Uses
+      None
+Comment: myCODE unused
+stop 00000016
+
+Symbol: stop
+   Definitions
+      At line 17 in file main.s
+   Uses
+      At line 17 in file main.s
+Comment: stop used once
+sum2 00000018
+
+Symbol: sum2
+   Definitions
+      At line 20 in file main.s
+   Uses
+      At line 11 in file main.s
+Comment: sum2 used once
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+myDATA 00000000
+
+Symbol: myDATA
+   Definitions
+      At line 25 in file main.s
+   Uses
+      None
+Comment: myDATA unused
+t 00000000
+
+Symbol: t
+   Definitions
+      At line 26 in file main.s
+   Uses
+      At line 13 in file main.s
+Comment: t used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+product 00000000
+
+Symbol: product
+   Definitions
+      At line 5 in file main.s
+   Uses
+      At line 12 in file main.s
+Comment: product used once
+1 symbol
+344 symbols in table
